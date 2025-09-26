@@ -92,13 +92,6 @@ lecturesnap/
 
 4. Load the updated extension in Chrome using developer mode
 
-## 🎯 Use Cases
-
-- **Students**: Take organized notes during online lectures
-- **Researchers**: Document important points from educational videos
-- **Professionals**: Create study materials from training videos
-- **Content Creators**: Analyze and document educational content
-
 ## 🔒 Privacy & Permissions
 
 LectureSnap requires minimal permissions:
@@ -106,27 +99,9 @@ LectureSnap requires minimal permissions:
 - `storage`: To save your notes locally
 - `unlimitedStorage`: To handle larger note collections
 
-**Privacy Commitment**: All your notes are stored locally on your device. No data is transmitted to external servers.
-
-## 🤝 Contributing
-
-This is a portfolio project, but feedback and suggestions are welcome! If you find any bugs or have feature requests, please open an issue.
-
 ## 📄 License
 
 This project is open source and available under the [MIT License](LICENSE).
-
-## 🏆 Project Highlights
-
-- **Clean Architecture**: Well-structured codebase following modern React patterns
-- **User-Centered Design**: Intuitive interface designed with user experience in mind
-- **Performance Optimized**: Lightweight extension that doesn't slow down YouTube
-- **Cross-Browser Ready**: Built with standards that work across modern browsers
-- **Responsive Design**: Adapts to different screen sizes and resolutions
-
-## 📧 Contact
-
-For questions about this project, feel free to reach out through GitHub issues or connect with me on LinkedIn.
 
 ---
 
