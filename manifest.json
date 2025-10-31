@@ -7,7 +7,6 @@
       "service_worker": "background.js"
    },
    "content_scripts": [ {
-      "css": [ "contentcss.css" ],
       "js": [ "updateContent.js" ],
       "matches": [ "*://www.youtube.com/*" ]
    } ],
@@ -17,12 +16,17 @@
    "description": "Quickly Make video notes and convert into pdf",
    "icons": {
       "16": "icon.png",
-      "48": "icon.png"
+      "48": "icon.png",
+      "128": "icon.png"
    },
    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhKP19BP7KGrcJIPjBKCW6BH4/TazK7B1H29BmdIsZ4D+leccXdf2ObFzpT5CwmbgeAM0YnPO0IADzhYYAp7hHfRN8o9nPvkuTx3K6PZPxOR7GMaMQoM1qcLob1KGNEoo8CjtW9u5kcBb7kOMH1wwMeKVneinoJI5lzuzRzeeBSQY+b5oRxYXw+RcK1ZRz09azbJckmKWAseM9jY0tpbbH83TdkS2WeKMiPq0EJ9aNNIMEIVbmt5rvfK8mt0ljvUsXNFoONgDcV6MC/yMFkTPwViPsoUesgHgB1EEeRUFJUsRGz/9P1L8OTKnycEMNW2/qiYKxNgHVOxV4on1/2hd5wIDAQAB",
    "manifest_version": 3,
    "name": "LectureSnap",
    "permissions": [ "activeTab", "storage", "unlimitedStorage" ],
    "update_url": "https://clients2.google.com/service/update2/crx",
-   "version": "2.0"
+   "version": "2.0",
+   "web_accessible_resources": [ {
+      "resources": [ "Oswald/static/*.ttf", "icon.png", "download.svg", "menu.svg" ],
+      "matches": [ "<all_urls>" ]
+   } ]
 }

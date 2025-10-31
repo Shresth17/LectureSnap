@@ -1,0 +1,22 @@
+{
+  "name": "lecturesnap-source",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Source code for the LectureSnap Chrome extension popup (React) plus dev server.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@react-pdf/renderer": "^4.1.6",
+    "axios": "^1.7.7",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.4.10"
+  }
+}

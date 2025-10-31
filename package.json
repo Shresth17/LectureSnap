@@ -1,0 +1,10 @@
+{
+  "name": "lecturesnap",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Chrome extension for taking timestamped screenshots and notes on YouTube videos with PDF export.",
+  "scripts": {
+    "build": "cd source && npm run build"
+  },
+  "license": "MIT"
+}

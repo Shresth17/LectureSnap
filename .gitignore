@@ -1,0 +1,21 @@
+node_modules/
+*.log
+.DS_Store
+Thumbs.db
+build/
+dist/
+build-popup/
+
+# Build output (will be regenerated)
+static/
+index.html
+
+# Environment variables
+.env
+.env.local
+.env.production
+.env.development
+
+# Editor directories
+.vscode/
+.idea/

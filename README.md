@@ -1,108 +1,262 @@
 # LectureSnap 📚
 
-A Chrome extension that transforms your YouTube learning experience by enabling you to take timestamped notes while watching educational videos and export them as beautifully formatted PDFs.
+A Chrome extension that transforms your YouTube learning experience by enabling you to take timestamped screenshots and notes while watching educational videos, with the ability to export everything as beautifully formatted PDFs.
 
 ## 🌟 Features
 
-- **Timestamped Note-Taking**: Capture notes with automatic timestamps while watching YouTube videos
-- **PDF Export**: Convert your notes into professional PDF documents with embedded video thumbnails
-- **Clean Interface**: Intuitive sidebar design that doesn't interfere with your viewing experience
-- **Bookmark Integration**: Generate PDF bookmarks for easy navigation through your notes
-- **Responsive Design**: Works seamlessly across different screen sizes
-- **Educational Focus**: Specifically designed for learning and educational content
+- **📸 Timestamped Screenshots**: Capture video frames with automatic timestamps
+- **🎨 Drawing Tools**: Annotate screenshots with customizable colors and brush sizes
+- **📝 Note-Taking**: Add text notes to your captured screenshots
+- **📄 PDF Export**: Generate beautiful PDFs with clickable timestamps
+- **📚 Playlist Support**: Export entire YouTube playlists as one comprehensive PDF
+- **💾 Local Storage**: All data stored locally on your device
+- **⌨️ Keyboard Shortcuts**: 
+  - `Ctrl+B` - Quick screenshot
+  - `Ctrl+I` - Drawing mode
+  - `Ctrl+Enter` - Save note
+- **🎯 YouTube Integration**: Seamless integration with YouTube's video player
 
 ## 🚀 Installation
 
-### From Source Code
-1. Clone this repository:
+### Prerequisites
+- Node.js (v14 or higher)
+- npm or yarn
+- Chrome browser
+
+### Setup & Build
+
+1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/lecturesnap.git
+   git clone https://github.com/Shresth17/LectureSnap.git
+   cd LectureSnap
    ```
 
-2. Open Chrome and navigate to `chrome://extensions/`
+2. **Install dependencies**
+   ```bash
+   cd source
+   npm install
+   ```
 
-3. Enable "Developer mode" (toggle switch in top right)
+3. **Configure environment (Optional)**
+   ```bash
+   # Copy environment template
+   cp .env.example .env
+   
+   # Edit .env and add your YouTube API key (optional - has fallback)
+   # Get your API key from: https://console.cloud.google.com/apis/credentials
+   ```
 
-4. Click "Load unpacked" and select the project folder
+4. **Build the extension**
+   ```bash
+   # From project root
+   npm run build
+   
+   # OR from source directory
+   cd source
+   npm run build
+   ```
+   
+   This creates:
+   - `index.html` in root
+   - `/static` folder with bundled JS/CSS
 
-5. The LectureSnap extension should now appear in your extensions list
+5. **Load in Chrome**
+   - Open Chrome and navigate to `chrome://extensions/`
+   - Enable "Developer mode" (toggle in top right)
+   - Click "Load unpacked"
+   - Select the `LectureSnap` project folder
+   - The extension icon should appear in your toolbar
 
 ## 💡 How to Use
 
-1. **Navigate to YouTube**: Visit any YouTube video you want to take notes on
+### Taking Screenshots
+1. Navigate to any YouTube video
+2. Click the 📝 capture button in the video controls (or press `Ctrl+B`)
+3. A note popup appears - add your text and press `Ctrl+Enter` to save
+4. Screenshot is automatically saved with timestamp
 
-2. **Open LectureSnap**: Click the extension icon in your Chrome toolbar
+### Drawing Annotations
+1. Press `Ctrl+I` to enter drawing mode
+2. Choose color and brush size from the toolbar
+3. Draw on the video frame
+4. Click the ✅ save button to capture
 
-3. **Take Notes**: 
-   - Use the clean interface to write your notes
-   - Notes are automatically timestamped based on video playback
-   - Add multiple notes throughout the video
-
-4. **Export to PDF**:
-   - Click the download button when you're ready
-   - Your notes will be compiled into a professional PDF
-   - Includes video thumbnails and timestamps for reference
+### Viewing & Exporting PDFs
+1. Click the LectureSnap extension icon
+2. View your screenshots in the popup
+3. Click the download icon to export as PDF
+4. For playlists, switch to "List View" to export all videos together
 
 ## 🛠️ Technical Stack
 
-- **Frontend**: React.js with modern JavaScript (ES6+)
-- **Styling**: CSS3 with Flexbox/Grid layouts
-- **Extension APIs**: Chrome Extension Manifest V3
-- **PDF Generation**: React-PDF library
-- **Build Tools**: Webpack, Babel
-- **Font**: Oswald (Google Fonts)
+- **Frontend**: React 18.3.1 with Vite 5.4.10
+- **PDF Generation**: @react-pdf/renderer 4.1.6
+- **HTTP Client**: Axios 1.7.7 (YouTube API integration)
+- **Extension**: Chrome Manifest V3
+- **Canvas API**: Screenshot capture and drawing
+- **Storage**: Chrome Storage API (local)
+- **Font**: Oswald (custom font in PDFs)
 
 ## 📁 Project Structure
 
 ```
-lecturesnap/
-├── manifest.json          # Extension configuration
-├── background.js          # Service worker for extension
-├── content.js            # Content script for YouTube integration
-├── updateContent.js      # Content script updates
-├── index.html           # Extension popup HTML
-├── contentcss.css       # Styling for content scripts
-├── icon.png            # Extension icon
-├── static/             # Built assets
-│   ├── css/           # Compiled CSS
-│   ├── js/            # Compiled JavaScript
-│   └── media/         # Fonts and images
-└── Oswald/            # Font files
+LectureSnap/
+├── manifest.json           # Chrome extension manifest (v3)
+├── background.js           # Service worker (tab listener)
+├── updateContent.js        # Content script (YouTube integration)
+├── package.json            # Root build scripts
+├── .gitignore             # Git ignore (excludes build output)
+│
+├── Oswald/                # Custom fonts for PDF
+│   └── static/            # Multiple font weights
+│
+└── source/                # React source code
+    ├── .env               # Environment variables (gitignored)
+    ├── .env.example       # Environment template
+    ├── package.json       # Dependencies
+    ├── vite.config.js     # Vite build config
+    ├── index.html         # HTML template
+    │
+    └── src/
+        ├── main.jsx       # React entry point
+        ├── popup/
+        │   ├── App.jsx                # Main app component
+        │   └── components/
+        │       ├── Sidebar.jsx        # Navigation sidebar
+        │       └── StartingScreen.jsx # Landing screen
+        └── styles/
+            └── index.css  # Global styles
+
+Generated on build:
+├── index.html             # Built popup HTML
+└── static/                # Bundled assets
+    ├── js/                # JavaScript bundles
+    ├── css/               # Stylesheets
+    └── media/             # Images, fonts
 ```
 
 ## 🔧 Development
 
-### Prerequisites
-- Node.js (v14 or higher)
-- Chrome browser
-- Basic knowledge of JavaScript/React
+### Development Workflow
 
-### Development Setup
-1. Install dependencies (if you want to modify the source):
+**For Content Scripts** (`background.js`, `updateContent.js`):
+```bash
+# Edit the file
+# Reload extension in Chrome - that's it!
+# ✅ No build required
+```
+
+**For Popup UI** (React in `/source/src`):
+```bash
+# 1. Edit files in /source/src
+# 2. Build
+npm run build  # from root
+# 3. Reload extension in Chrome
+```
+
+### Build Process
+
+The Vite build outputs to the project root:
+- `index.html` → Root directory
+- JavaScript/CSS → `/static` folder
+- Assets → `/static/media`
+
+**Important**: Don't manually edit `index.html` or `/static` - they're auto-generated and in `.gitignore`
+
+### Environment Variables
+
+Create `/source/.env`:
+```env
+VITE_YOUTUBE_API_KEY=your_api_key_here
+```
+
+Used for fetching playlist information. Falls back to embedded key if not set.
+
+## 🧪 Testing
+
+1. Build: `npm run build`
+2. Load extension in Chrome
+3. Visit YouTube and test features
+4. Check console for errors (F12)
+
+### Common Issues
+
+**Build fails?**
+- Check Node.js version: `node --version` (need v14+)
+- Install dependencies: `cd source && npm install`
+- Clear build: `rm -rf static index.html` then rebuild
+
+**Extension not loading?**
+- Ensure `npm run build` completed successfully
+- Check `manifest.json` is in root
+- Look for errors in `chrome://extensions/`
+
+**Fonts not showing in PDF?**
+- Verify `/Oswald/static/*.ttf` files exist
+- Check `web_accessible_resources` in manifest.json
+- Inspect browser console for font loading errors
+
+**Screenshots not saving?**
+- Check Chrome storage: `chrome://extensions/` → LectureSnap → Inspect views → Application tab
+- Verify storage permissions in manifest
+
+## 🔒 Privacy & Security
+
+### Permissions
+- **activeTab**: Interact with current YouTube tab
+- **storage**: Save screenshots/notes locally
+- **unlimitedStorage**: Handle large screenshot collections
+
+### Data Storage
+✅ **100% Local** - All screenshots and notes stay on your device  
+✅ **No Cloud Sync** - Nothing is sent to external servers  
+✅ **No Tracking** - We don't collect any user data
+
+### API Usage
+The YouTube API key is only used to fetch **public** playlist metadata for PDF organization. It's optional and has a fallback.
+
+## 🤝 Contributing
+
+We welcome contributions! Here's how:
+
+1. **Fork** the repository
+2. **Create** a feature branch
    ```bash
-   npm install
+   git checkout -b feature/AmazingFeature
    ```
-
-2. Make your changes to the source files
-
-3. Build the project:
+3. **Commit** your changes
    ```bash
-   npm run build
+   git commit -m 'Add some AmazingFeature'
    ```
+4. **Push** to your branch
+   ```bash
+   git push origin feature/AmazingFeature
+   ```
+5. **Open** a Pull Request
 
-4. Load the updated extension in Chrome using developer mode
-
-## 🔒 Privacy & Permissions
-
-LectureSnap requires minimal permissions:
-- `activeTab`: To interact with the current YouTube tab
-- `storage`: To save your notes locally
-- `unlimitedStorage`: To handle larger note collections
+### Contribution Guidelines
+- Follow existing code style
+- Test thoroughly before submitting
+- Update README if adding features
+- Keep commits focused and descriptive
 
 ## 📄 License
 
-This project is open source and available under the [MIT License](LICENSE).
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 🙏 Acknowledgments
+
+- Oswald font by Vernon Adams
+- @react-pdf/renderer for PDF generation
+- Chrome Extensions team for excellent documentation
+
+## 📞 Support
+
+- **Issues**: [GitHub Issues](https://github.com/Shresth17/LectureSnap/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/Shresth17/LectureSnap/discussions)
 
 ---
 
-**LectureSnap** - Making learning more organized, one note at a time! 🎓
+**Made with ❤️ by [Shresth17](https://github.com/Shresth17)**
+
+**LectureSnap** - Making learning more organized with visual notes! 🎓
